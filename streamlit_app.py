@@ -242,8 +242,10 @@ try:
         plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
         plt.title(key)
         plt.savefig(key+".png")
-        plt.show()
-        st.pyplot(fig5)
+
+    plt.show()
+    st.pyplot(fig5)
+
 except:
   print('Please enter client ID again')
 
