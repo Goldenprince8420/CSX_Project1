@@ -89,10 +89,10 @@ st.write(focus)
 st.subheader('Result Plots')
 
 try:
-    id = st.text_input('Enter Client ID:')
-    # id=394688
+    # id = st.text_input('Enter Client ID:')
+    id=240007
     prob = result.loc[result['SK_ID_CURR']==id]['TARGET'].values[0]*100
-    # print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
+    print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
     st.write(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
 except:
     pass
@@ -107,20 +107,143 @@ try:
     else:
         oppClass=result[result['Class']==1]
 
-    for key, val in focus.items():
+    # figs = [None] * len(focus.keys())
+    # i = 0
 
-        temp = pd.DataFrame(columns=['Target','Average','SameGroup','OppGroup'])
-        temp['Target']=client[key]
-        temp['Average']=np.average(result[key].values)
-        temp['SameGroup']=np.average(sameClass[key].values)
-        temp['OppGroup']=np.average(oppClass[key].values)
-        temp = temp.T
-        fig4 = plt.figure(figsize=(10, 5))
-        plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
-        plt.title(key)
-        plt.savefig(key+".png")
-        plt.show()
-        st.pyplot(fig4)
+    key = 'AMT_CREDIT_PERCENT'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig5 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig5)
+
+    key = 'AMT_APPLICATION'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig6 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig6)
+
+    key = 'DAYS_EMPLOYED'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig7 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig7)
+
+    key = 'DAYS_BIRTH'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig8 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig8)
+
+    key = 'AMT_GOODS_PRICE'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig9 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig9)
+
+    key = 'AMT_ANNUITY_x'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig10 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig10)
+
+    key = 'AMT_INCOME_TOTAL'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig11 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig11)
+
+    key = 'AMT_CREDIT'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig9 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig9)
+
+    # for key, val in focus.items():
+    #
+    #     temp = pd.DataFrame(columns=['Target','Average','SameGroup','OppGroup'])
+    #     temp['Target']=client[key]
+    #     temp['Average']=np.average(result[key].values)
+    #     temp['SameGroup']=np.average(sameClass[key].values)
+    #     temp['OppGroup']=np.average(oppClass[key].values)
+    #     temp = temp.T
+    #     figs[i] = plt.figure(figsize=(10, 5))
+    #     plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    #     plt.title(key)
+    #     plt.savefig(key+".png")
+    #     plt.show()
+    #     st.pyplot(figs[i])
 except:
   print('Please enter client ID again')
 
