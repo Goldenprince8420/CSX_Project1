@@ -7,7 +7,7 @@ data_filtered = data[columns]
 data_filtered.to_csv("train_data_domain_filtered.csv")
 
 
-columns = ['Class', 'SK_ID_CURR', 'DAYS_BIRTH', 'AMT_CREDIT_PERCENT', 'AMT_APPLICATION', 'DAYS_BIRTH', 'AMT_GOODS_PRICE', 'AMT_ANNUITY_x', 'AMT_INCOME_TOTAL', 'AMT_CREDIT', "TARGET"]
+columns = ['Class', 'FLAG_OWN_REALTY', 'SK_ID_CURR', 'DAYS_BIRTH', 'AMT_CREDIT_PERCENT', 'AMT_APPLICATION', 'DAYS_BIRTH', 'AMT_GOODS_PRICE', 'AMT_ANNUITY_x', 'AMT_INCOME_TOTAL', 'AMT_CREDIT', "TARGET"]
 data = pd.read_csv("result.csv")
 data_filtered = data[columns]
 data_filtered.to_csv("results_filtered.csv")

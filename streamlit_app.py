@@ -8,6 +8,7 @@ import pickle
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('Home Credit Default Risk')
+plt.style.use("ggplot")
 
 # loading the data
 
@@ -110,6 +111,7 @@ try:
     # figs = [None] * len(focus.keys())
     # i = 0
 
+    st.write("Amount of Credit Vs Index")
     key = 'AMT_CREDIT_PERCENT'
     val = focus[key]
     temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
@@ -122,38 +124,38 @@ try:
     plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
     plt.title(key)
     plt.savefig(key + ".png")
-    plt.show()
+    # plt.show()
     st.pyplot(fig5)
     #
-    key = 'AMT_APPLICATION'
-    val = focus[key]
-    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
-    temp['Target'] = client[key]
-    temp['Average'] = np.average(result[key].values)
-    temp['SameGroup'] = np.average(sameClass[key].values)
-    temp['OppGroup'] = np.average(oppClass[key].values)
-    temp = temp.T
-    fig6 = plt.figure(figsize=(10, 5))
-    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
-    plt.title(key)
-    plt.savefig(key + ".png")
-    plt.show()
-    st.pyplot(fig6)
-    #
-    key = 'DAYS_EMPLOYED'
-    val = focus[key]
-    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
-    temp['Target'] = client[key]
-    temp['Average'] = np.average(result[key].values)
-    temp['SameGroup'] = np.average(sameClass[key].values)
-    temp['OppGroup'] = np.average(oppClass[key].values)
-    temp = temp.T
-    fig7 = plt.figure(figsize=(10, 5))
-    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
-    plt.title(key)
-    plt.savefig(key + ".png")
-    plt.show()
-    st.pyplot(fig7)
+    # key = 'AMT_APPLICATION'
+    # val = focus[key]
+    # temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    # temp['Target'] = client[key]
+    # temp['Average'] = np.average(result[key].values)
+    # temp['SameGroup'] = np.average(sameClass[key].values)
+    # temp['OppGroup'] = np.average(oppClass[key].values)
+    # temp = temp.T
+    # fig6 = plt.figure(figsize=(10, 5))
+    # plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    # plt.title(key)
+    # plt.savefig(key + ".png")
+    # plt.show()
+    # st.pyplot(fig6)
+    # #
+    # key = 'DAYS_EMPLOYED'
+    # val = focus[key]
+    # temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    # temp['Target'] = client[key]
+    # temp['Average'] = np.average(result[key].values)
+    # temp['SameGroup'] = np.average(sameClass[key].values)
+    # temp['OppGroup'] = np.average(oppClass[key].values)
+    # temp = temp.T
+    # fig7 = plt.figure(figsize=(10, 5))
+    # plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    # plt.title(key)
+    # plt.savefig(key + ".png")
+    # plt.show()
+    # st.pyplot(fig7)
     #
     # key = 'DAYS_BIRTH'
     # val = focus[key]
@@ -244,6 +246,45 @@ try:
     #     plt.savefig(key+".png")
     #     plt.show()
     #     st.pyplot(fig5)
+
+    result["Age(years)"] = abs(result['DAYS_BIRTH']) // 365
+    st.write("Age Vs Amount Income")
+    fig6 = plt.figure(figsize = (10, 5))
+    plt.plot(result["Age(years)"], result["AMT_INCOME_TOTAL"])
+    plt.title("Age(years) vs Amount of Income")
+    plt.savefig("AGE_AMT_OF_INCOME" + ".png")
+    st.pyplot(fig6)
+
+    st.write("Age vs Total Amount Credit")
+    fig7 = plt.figure(figsize=(10, 5))
+    plt.plot(result["Age(years)"], result["AMT_CREDIT"])
+    plt.title("Age(years) vs Amount of Credit")
+    plt.savefig("AGE_AMT_OF_CREDIT" + ".png")
+    st.pyplot(fig7)
+
+    st.write("Age vs Flag Own Realty")
+    fig8 = plt.figure(figsize=(10, 5))
+    plt.plot(result["Age(years)"], result["FLAG_OWN_REALTY"])
+    plt.title("Age(years) vs Flag Own Realty")
+    plt.savefig("AGE_FLAG_OWN_REALITY" + ".png")
+    st.pyplot(fig8)
+
+    st.write("Age vs Days Employeed")
+    fig9 = plt.figure(figsize=(10, 5))
+    plt.plot(result["Age(years)"], result["DAYS_EMPLOYED"])
+    plt.title("Age(years) vs Days Employed")
+    plt.savefig("AGE_DAYS_EMPLOYED" + ".png")
+    st.pyplot(fig9)
+
+
+    # st.write("Years Employeed(Grouped) vs Total Amount Credit")
+    # fig10 = plt.figure(figsize=(10, 5))
+    # plt.plot(result["Age(years)"], result["AMT_CREDIT"])
+    # plt.title("Age(years) vs Amount of Income")
+    # plt.savefig("AGE_AMT_OF_INCOME" + ".png")
+    # st.pyplot(fig10)
+    #
+    # st.write("Years Employeed(Grouped) vs Age Income")
 
 except:
   print('Please enter client ID again')
