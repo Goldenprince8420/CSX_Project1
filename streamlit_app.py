@@ -229,7 +229,6 @@ try:
     # plt.savefig(key + ".png")
     # plt.show()
     # st.pyplot(fig12)
-    fig5 = plt.figure(figsize=(10, 5))
 
     for key, val in focus.items():
 
@@ -239,11 +238,12 @@ try:
         temp['SameGroup']=np.average(sameClass[key].values)
         temp['OppGroup']=np.average(oppClass[key].values)
         temp = temp.T
+        fig5 = plt.figure(figsize=(10, 5))
         plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
         plt.title(key)
         plt.savefig(key+".png")
         plt.show()
-    st.pyplot(fig5)
+        st.pyplot(fig5)
 
 except:
   print('Please enter client ID again')
