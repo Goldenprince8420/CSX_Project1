@@ -125,20 +125,20 @@ try:
     plt.show()
     st.pyplot(fig5)
     #
-    # key = 'AMT_APPLICATION'
-    # val = focus[key]
-    # temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
-    # temp['Target'] = client[key]
-    # temp['Average'] = np.average(result[key].values)
-    # temp['SameGroup'] = np.average(sameClass[key].values)
-    # temp['OppGroup'] = np.average(oppClass[key].values)
-    # temp = temp.T
-    # fig6 = plt.figure(figsize=(10, 5))
-    # plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
-    # plt.title(key)
-    # plt.savefig(key + ".png")
-    # plt.show()
-    # st.pyplot(fig6)
+    key = 'AMT_APPLICATION'
+    val = focus[key]
+    temp = pd.DataFrame(columns=['Target', 'Average', 'SameGroup', 'OppGroup'])
+    temp['Target'] = client[key]
+    temp['Average'] = np.average(result[key].values)
+    temp['SameGroup'] = np.average(sameClass[key].values)
+    temp['OppGroup'] = np.average(oppClass[key].values)
+    temp = temp.T
+    fig6 = plt.figure(figsize=(10, 5))
+    plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
+    plt.title(key)
+    plt.savefig(key + ".png")
+    plt.show()
+    st.pyplot(fig6)
     #
     # key = 'DAYS_EMPLOYED'
     # val = focus[key]
