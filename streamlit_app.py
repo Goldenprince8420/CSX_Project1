@@ -73,8 +73,65 @@ st.write('Credit Amount')
 amtCredit=result.sort_values(by='AMT_CREDIT', ascending=False)[['SK_ID_CURR', 'AMT_CREDIT']]
 amtCredit.set_index('SK_ID_CURR')[:20].plot.barh(figsize=(10, 10))
 plt.savefig("CreditAmount.png")
-plt.show()
+# plt.show()
 st.pyplot()
+
+
+result["Age(years)"] = abs(result['DAYS_BIRTH']) // 365
+train_df["Age(years)"] = abs(train_df['DAYS_BIRTH']) // 365
+
+def get_cat(x):
+    return str(x//10*10) + '-' + str((x//10*10)+10)
+
+result['Age_cat']=list(map(get_cat, result["Age(years)"]))
+train_df["Age_cat"]=list(map(get_cat, train_df["Age(years)"]))
+
+data = result.groupby(by="Age_cat", as_index=False).mean()
+data2 = train_df.groupby(by="Age_cat", as_index=False).mean()
+
+# print(data.head())
+st.write("Age Vs Amount Income")
+fig6 = plt.figure(figsize = (10, 5))
+plt.plot(data["Age_cat"], data["AMT_INCOME_TOTAL"])
+# result.groupby(['Age(years)','AMT_INCOME_TOTAL']).sum().unstack().plot()
+plt.title("Age(years) vs Amount of Income")
+plt.savefig("AGE_AMT_OF_INCOME" + ".png")
+# plt.show()
+st.pyplot(fig6)
+
+st.write("Age vs Total Amount Credit")
+fig7 = plt.figure(figsize=(10, 5))
+plt.plot(data["Age_cat"], data["AMT_CREDIT"])
+plt.title("Age(years) vs Amount of Credit")
+plt.savefig("AGE_AMT_OF_CREDIT" + ".png")
+# plt.show()
+st.pyplot(fig7)
+#
+st.write("Age vs Flag Own Realty")
+fig8 = plt.figure(figsize=(10, 5))
+plt.plot(data["Age_cat"], data["FLAG_OWN_REALTY"])
+plt.title("Age(years) vs Flag Own Realty")
+plt.savefig("AGE_FLAG_OWN_REALITY" + ".png")
+# plt.show()
+st.pyplot(fig8)
+#
+st.write("Age vs Days Employed")
+fig9 = plt.figure(figsize=(10, 5))
+plt.plot(data2["Age_cat"], data2["DAYS_EMPLOYED"])
+plt.title("Age(years) vs Days Employed")
+plt.savefig("AGE_DAYS_EMPLOYED" + ".png")
+plt.show()
+st.pyplot(fig9)
+
+# st.write("Years Employeed(Grouped) vs Total Amount Credit")
+# fig10 = plt.figure(figsize=(10, 5))
+# plt.plot(result.groupby(["Age(years)", "Target"], ), result["AMT_CREDIT"])
+# plt.title("Age(years) vs Amount of Income")
+# plt.savefig("AGE_AMT_OF_INCOME" + ".png")
+# st.pyplot(fig10)
+#
+# st.write("Years Employeed(Grouped) vs Age Income")
+
 
 focus={'AMT_CREDIT_PERCENT': "the average between the loan and the income",
        'AMT_APPLICATION':'For how much credit did client ask on the previous application',
@@ -120,12 +177,12 @@ try:
     temp['SameGroup'] = np.average(sameClass[key].values)
     temp['OppGroup'] = np.average(oppClass[key].values)
     temp = temp.T
-    fig5 = plt.figure(figsize=(10, 5))
+    fig100 = plt.figure(figsize=(10, 5))
     plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
     plt.title(key)
     plt.savefig(key + ".png")
-    # plt.show()
-    st.pyplot(fig5)
+    plt.show()
+    st.pyplot(fig100)
     #
     # key = 'AMT_APPLICATION'
     # val = focus[key]
@@ -246,46 +303,6 @@ try:
     #     plt.savefig(key+".png")
     #     plt.show()
     #     st.pyplot(fig5)
-
-    result["Age(years)"] = abs(result['DAYS_BIRTH']) // 365
-    st.write("Age Vs Amount Income")
-    fig6 = plt.figure(figsize = (10, 5))
-    plt.plot(result["Age(years)"], result["AMT_INCOME_TOTAL"])
-    plt.title("Age(years) vs Amount of Income")
-    plt.savefig("AGE_AMT_OF_INCOME" + ".png")
-    st.pyplot(fig6)
-
-    st.write("Age vs Total Amount Credit")
-    fig7 = plt.figure(figsize=(10, 5))
-    plt.plot(result["Age(years)"], result["AMT_CREDIT"])
-    plt.title("Age(years) vs Amount of Credit")
-    plt.savefig("AGE_AMT_OF_CREDIT" + ".png")
-    st.pyplot(fig7)
-
-    st.write("Age vs Flag Own Realty")
-    fig8 = plt.figure(figsize=(10, 5))
-    plt.plot(result["Age(years)"], result["FLAG_OWN_REALTY"])
-    plt.title("Age(years) vs Flag Own Realty")
-    plt.savefig("AGE_FLAG_OWN_REALITY" + ".png")
-    st.pyplot(fig8)
-
-    st.write("Age vs Days Employeed")
-    fig9 = plt.figure(figsize=(10, 5))
-    plt.plot(result["Age(years)"], result["DAYS_EMPLOYED"])
-    plt.title("Age(years) vs Days Employed")
-    plt.savefig("AGE_DAYS_EMPLOYED" + ".png")
-    st.pyplot(fig9)
-
-
-    # st.write("Years Employeed(Grouped) vs Total Amount Credit")
-    # fig10 = plt.figure(figsize=(10, 5))
-    # plt.plot(result["Age(years)"], result["AMT_CREDIT"])
-    # plt.title("Age(years) vs Amount of Income")
-    # plt.savefig("AGE_AMT_OF_INCOME" + ".png")
-    # st.pyplot(fig10)
-    #
-    # st.write("Years Employeed(Grouped) vs Age Income")
-
 except:
   print('Please enter client ID again')
 

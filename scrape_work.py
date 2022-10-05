@@ -1,7 +1,7 @@
 import pandas as pd
 data = pd.read_csv("train_data_domain.csv")
 
-columns = ['DAYS_BIRTH', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'CREDIT_INCOME_PERCENT',
+columns = ['DAYS_BIRTH', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'DAYS_EMPLOYED', 'CREDIT_INCOME_PERCENT',
            'ANNUITY_INCOME_PERCENT','CREDIT_TERM','DAYS_EMPLOYED_PERCENT', "TARGET"]
 data_filtered = data[columns]
 data_filtered.to_csv("train_data_domain_filtered.csv")
