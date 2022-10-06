@@ -203,7 +203,7 @@ try:
 
         plt.bar(data["Age_cat"], data["AMT_INCOME_TOTAL"], color="blue")
         plt.hlines(y=client["AMT_INCOME_TOTAL"], xmin=0, xmax="60-70")
-        plt.vlines(x=client["Age_cat"], ymin=0, ymax=result["AMT_INCOME_TOTAL"].max())
+        plt.vlines(x=client["Age_cat"], ymin=0, ymax=client["AMT_INCOME_TOTAL"])
         # result.groupby(['Age(years)','AMT_INCOME_TOTAL']).sum().unstack().plot()
         plt.title("Age Groups vs Average Amount of Income")
         plt.savefig("AVG_AGE_AMT_OF_INCOME_BAR" + ".png")
@@ -214,7 +214,7 @@ try:
         fig13 = plt.figure(figsize=(10, 5))
         plt.bar(data["Age_cat"], data["AMT_CREDIT"], color="red")
         plt.hlines(y=client["AMT_CREDIT"], xmin=0, xmax="60-70")
-        plt.vlines(x=client["Age_cat"], ymin=0, ymax=result["AMT_CREDIT"].max())
+        plt.vlines(x=client["Age_cat"], ymin=0, ymax=client["AMT_CREDIT"])
         plt.title("Age(years) vs Amount of Credit")
         plt.savefig("AVG_AGE_AMT_OF_CREDIT" + ".png")
         plt.show()
