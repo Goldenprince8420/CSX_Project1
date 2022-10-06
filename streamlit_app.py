@@ -127,6 +127,10 @@ plt.savefig("AGE_DAYS_EMPLOYED" + ".png")
 plt.show()
 st.pyplot(fig9)
 
+st.write("Feature Importance Plot by SHAP")
+fig11 = Image.open('Shap_plot.png')
+st.image(fig11, caption='Feature Importance Plot')
+
 # result = result.loc[:, result.columns != ['Age_cat']]
 
 
@@ -445,9 +449,7 @@ submit = st.button('Predict Default')
 # shap.summary_plot(shap_values, X_importance)
 # st.pyplot(fig11)
 
-st.write("Feature Importance Plot by SHAP")
-fig11 = Image.open('Shap_plot.png')
-st.image(fig11, caption='Feature Importance Plot')
+
 
 # current_model = model # Explain the Random Forest Model
 # clf = current_model
