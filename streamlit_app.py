@@ -21,7 +21,7 @@ def load_data(file):
     return df
 
 train_df = load_data('train_data_domain_filtered')
-train_df_orig = load_data("train_data_domain")
+# train_df_orig = load_data("train_data_domain")
 result = load_data('results_filtered')
 
 st.subheader('Distribution of Variables')
