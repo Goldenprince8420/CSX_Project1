@@ -215,10 +215,30 @@ try:
         plt.bar(data["Age_cat"], data["AMT_CREDIT"], color="red")
         plt.hlines(y=client["AMT_CREDIT"], xmin=0, xmax="60-70")
         plt.vlines(x=client["Age_cat"], ymin=0, ymax=client["AMT_CREDIT"]+10000)
-        plt.title("Age(years) vs Amount of Credit")
+        plt.title("Age Groups vs Average Amount of Credit")
         plt.savefig("AVG_AGE_AMT_OF_CREDIT" + ".png")
         plt.show()
         st.pyplot(fig13)
+
+        st.write("Lime Explanation")
+        fig12 = Image.open('image1.jpg')
+        st.image(fig12, caption='Lime Explanation Models')
+
+        st.write("Runtime for Lime Explanation")
+        fig13 = Image.open('image2.jpg')
+        st.image(fig13, caption='Lime Explanation Runtime')
+
+        st.write("Comparison of Lime vs Actual Prediction")
+        fig14 = Image.open('image3.jpg')
+        st.image(fig14, caption='Lime vs Actual Prediction')
+
+        st.write("Shap Value Range")
+        fig15 = Image.open('shap_val.png')
+        st.image(fig15, caption='Shap value range plot')
+
+        st.write("Mean Shap Values")
+        fig16 = Image.open('mean_shap_value.png')
+        st.image(fig16, caption='Mean Shap Values for features')
 
     #
     # key = 'AMT_APPLICATION'
