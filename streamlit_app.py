@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pickle
+import time
+import shap
+from PIL import Image
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -18,6 +21,7 @@ def load_data(file):
     return df
 
 train_df = load_data('train_data_domain_filtered')
+train_df_orig = load_data("train_data_domain")
 result = load_data('results_filtered')
 
 st.subheader('Distribution of Variables')
@@ -122,6 +126,9 @@ plt.title("Age(years) vs Days Employed")
 plt.savefig("AGE_DAYS_EMPLOYED" + ".png")
 plt.show()
 st.pyplot(fig9)
+
+# result = result.loc[:, result.columns != ['Age_cat']]
+
 
 # st.write("Years Employeed(Grouped) vs Total Amount Credit")
 # fig10 = plt.figure(figsize=(10, 5))
@@ -425,8 +432,47 @@ model = pickle.load(open('lgbmodel.pkl', 'rb'))
 prediction = model.predict(df)
 submit = st.button('Predict Default')
 
-if submit:
+# result = result.loc[:, result.columns != ['SK_ID_CURR']]
 
+# train_df = train_df.drop("Age_cat", axis = 1)
+# X_importance = train_df_orig.copy()
+
+# Explain model predictions using shap library:
+# explainer = shap.TreeExplainer(model)
+# shap_values = explainer.shap_values(X_importance)
+
+# fig11 = plt.figure(figsize=(10, 5))
+# shap.summary_plot(shap_values, X_importance)
+# st.pyplot(fig11)
+
+st.write("Feature Importance Plot by SHAP")
+fig11 = Image.open('Shap_plot.png')
+st.image(fig11, caption='Feature Importance Plot')
+
+# current_model = model # Explain the Random Forest Model
+# clf = current_model
+# test_df = train_df.sample(100)
+# # scaler = current_model["model"]["scaler"]
+# # scaled_train_data = scaler.transform(result)
+# # sub_sampled_train_data = shap.sample(scaled_train_data, 600, random_state=0) # use 600 samples of train data as background data
+#
+# # scaled_test_data = scaler.transform(result)
+# subsampled_test_data =test_df.values.reshape(1,-1)
+#
+# start_time = time.time()
+# explainer = shap.KernelExplainer(clf.predict_proba, train_df)
+# shap_values = explainer.shap_values(subsampled_test_data,  l1_reg="aic")
+# elapsed_time = time.time() - start_time
+# # explain first sample from test data
+# print("Kernel Explainer SHAP run time", round(elapsed_time,3), " seconds. ", current_model["name"])
+# print("SHAP expected value", explainer.expected_value)
+# print("Model mean value", clf.predict_proba(train_df).mean(axis=0))
+# print("Model prediction for test data", clf.predict_proba(subsampled_test_data))
+# shap.initjs()
+# pred_ind = 0
+# shap.force_plot(explainer.expected_value[1], shap_values[1][0], test_df[0], feature_names=result.columns)
+
+if submit:
   if prediction==1:
     st.write('Home Credit is Default')
   else:
