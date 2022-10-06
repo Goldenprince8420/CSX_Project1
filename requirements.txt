@@ -9,3 +9,4 @@ MarkupSafe
 gunicorn
 pickle-mixin
 shap
+Pillow
