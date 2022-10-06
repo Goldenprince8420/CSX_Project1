@@ -158,10 +158,10 @@ st.write(focus)
 st.subheader('Result Plots')
 
 try:
-    id = st.text_input('Enter Client ID:')
-    # id=240007
+    # id = st.text_input('Enter Client ID:')
+    id=240007
     prob = result.loc[result['SK_ID_CURR']==id]['TARGET'].values[0]*100
-    # print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
+    print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
     st.write(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
 except:
     pass
@@ -192,8 +192,26 @@ try:
     plt.barh(temp.index, temp[temp.columns[0]], color=plt.cm.Accent_r(np.arange(len(temp))))
     plt.title(key)
     plt.savefig(key + ".png")
-    plt.show()
+    # plt.show()
     st.pyplot(fig100)
+
+    st.write("Age Vs Amount Income")
+    fig12 = plt.figure(figsize=(10, 5))
+    plt.bar(data["Age_cat"], data["AMT_INCOME_TOTAL"], color="blue")
+    # result.groupby(['Age(years)','AMT_INCOME_TOTAL']).sum().unstack().plot()
+    plt.title("Age Groups vs Average Amount of Income")
+    plt.savefig("AVG_AGE_AMT_OF_INCOME_BAR" + ".png")
+    # plt.show()
+    st.pyplot(fig12)
+
+    st.write("Age vs Total Amount Credit")
+    fig13 = plt.figure(figsize=(10, 5))
+    plt.bar(data["Age_cat"], data["AMT_CREDIT"], color="red")
+    plt.title("Age(years) vs Amount of Credit")
+    plt.savefig("AVG_AGE_AMT_OF_CREDIT" + ".png")
+    plt.show()
+    st.pyplot(fig13)
+
     #
     # key = 'AMT_APPLICATION'
     # val = focus[key]
