@@ -158,10 +158,10 @@ st.write(focus)
 st.subheader('Result Plots')
 
 try:
-    # id = st.text_input('Enter Client ID:')
-    id=240007
+    id = st.text_input('Enter Client ID:')
+    # id=240007
     prob = result.loc[result['SK_ID_CURR']==id]['TARGET'].values[0]*100
-    print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
+    # print(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
     st.write(f'The client {id} has a {str(round(prob, 1))}% risk of defaulting on their loan.')
 except:
     pass
